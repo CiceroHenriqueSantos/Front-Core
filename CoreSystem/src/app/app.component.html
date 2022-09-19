@@ -1,3 +1,4 @@
+<app-navflow items="{{navItems | json}}"></app-navflow>
 <div>
   <div flex>
     <div class="card-container" fxLayout="row" fxLayoutGap="20px">
@@ -8,7 +9,7 @@
             <form [formGroup]="form" autocomplete="off">
               <div style="margin-top: 15px;">
                 <div fxLayout="row wrap" fxLayoutAlign="start top">
-                  <mat-form-field fxFlex="100" fxFlex.lt-md="100" appearance="outline">
+                  <mat-form-field fxFlex="50" fxFlex.lt-md="100" appearance="outline">
                     <mat-label>Nome
                     </mat-label>
                     <input type="text" name="name" maxlength="150" formControlName="name" matInput>
@@ -16,9 +17,17 @@
                       Campo obrigatório
                     </mat-error>
                   </mat-form-field>
+                  <mat-form-field fxFlex="50" fxFlex.lt-md="100" appearance="outline">
+                    <mat-label>CPF
+                    </mat-label>
+                    <input type="text" name="federalId"  [textMask]="maskCPF" maxlength="150" formControlName="federalId" matInput>
+                    <mat-error *ngIf="formControls.name.invalid">
+                      CPF inválido.
+                    </mat-error>
+                  </mat-form-field>
                 </div>
                 <div fxLayout="row wrap" fxLayoutAlign="start top">
-                  <mat-form-field fxFlex="50"  fxFlex.lt-md="100" appearance="outline">
+                  <mat-form-field fxFlex="50" fxFlex.lt-md="100" appearance="outline">
                     <mat-label>Sobrenome
                     </mat-label>
                     <input type="text" name="lastName" maxlength="150" formControlName="lastName" matInput>
@@ -39,19 +48,47 @@
                   <mat-form-field fxFlex="33" fxFlex.lt-md="100" appearance="outline">
                     <mat-label>CEP
                     </mat-label>
-                    <input type="text" name="zipCode" formControlName="zipCode" maxlength="10" matInput>
+                    <input type="text" name="zipCode" formControlName="zipCode" maxlength="10" matInput
+                      (blur)="searchCep()">
                     <mat-error *ngIf="formControls.name.invalid">
                       Campo obrigatório
                     </mat-error>
                   </mat-form-field>
+
                   <mat-form-field fxFlex="33" fxFlex.lt-md="100" appearance="outline">
-                    <mat-label>Estado
-                    </mat-label>
-                    <input type="text" name="state" formControlName="state" matInput>
-                    <mat-error *ngIf="formControls.name.invalid">
-                      Campo obrigatório
-                    </mat-error>
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="state">
+                      <mat-option [value]="null">Estado</mat-option>
+                      <mat-option value="AC">Acre</mat-option>
+                      <mat-option value="AL">Alagoas</mat-option>
+                      <mat-option value="AP">Amapá</mat-option>
+                      <mat-option value="AM">Amazonas</mat-option>
+                      <mat-option value="BA">Bahia</mat-option>
+                      <mat-option value="CE">Ceará</mat-option>
+                      <mat-option value="DF">Distrito Federal</mat-option>
+                      <mat-option value="ES">Espírito Santo</mat-option>
+                      <mat-option value="GO">Goiás</mat-option>
+                      <mat-option value="MA">Maranhão</mat-option>
+                      <mat-option value="MT">Mato Grosso</mat-option>
+                      <mat-option value="MS">Mato Grosso do Sul</mat-option>
+                      <mat-option value="MG">Minas Gerais</mat-option>
+                      <mat-option value="PA">Pará</mat-option>
+                      <mat-option value="PB">Paraíba</mat-option>
+                      <mat-option value="PR">Paraná</mat-option>
+                      <mat-option value="PE">Pernambuco</mat-option>
+                      <mat-option value="PI">Piauí</mat-option>
+                      <mat-option value="RJ">Rio de Janeiro</mat-option>
+                      <mat-option value="RN">Rio Grande do Norte</mat-option>
+                      <mat-option value="RS">Rio Grande do Sul</mat-option>
+                      <mat-option value="RO">Rondônia</mat-option>
+                      <mat-option value="RR">Roraima</mat-option>
+                      <mat-option value="SC">Santa Catarina</mat-option>
+                      <mat-option value="SP">São Paulo</mat-option>
+                      <mat-option value="SE">Sergipe</mat-option>
+                      <mat-option value="TO">Tocantins</mat-option>
+                    </mat-select>
                   </mat-form-field>
+
                   <mat-form-field fxFlex="34" fxFlex.lt-md="100" appearance="outline">
                     <mat-label>Cidade
                     </mat-label>
@@ -77,34 +114,34 @@
                     </mat-label>
                     <input type="text" name="email" maxlength="100" autocomplete="off" formControlName="email" matInput>
                     <mat-error *ngIf="formControls.name.invalid">
-                      Campo obrigatório
+                      E-mail inválido
                     </mat-error>
                   </mat-form-field>
                   <mat-form-field fxFlex="50" fxFlex.lt-md="100" appearance="outline">
                     <mat-label>Telefone
                     </mat-label>
-                    <input type="text" name="phone" autocomplete="off" formControlName="phone" matInput>
+                    <input type="text" name="phone" [textMask]="maskPhone" autocomplete="off" formControlName="phone"
+                      matInput>
                     <mat-error *ngIf="formControls.name.invalid">
                       Campo obrigatório
                     </mat-error>
                   </mat-form-field>
                 </div>
               </div>
+              <div fxLayout="row" fxLayoutAlign="center" fxLayoutAlign.gt-sm="end">
+                <div>
+                  <button style="width: 100px" class="btn" type="button" fxLayoutAlign="center center" (click)="save()">
+                    Salvar
+                  </button>
+                </div>
+                <div fxFlexOffset="1">
+                  <button style="width: 100px" class="btn danger" type="button" fxLayoutAlign="center center"
+                    (click)="reset()">
+                    Cancelar
+                  </button>
+                </div>
+              </div>
             </form>
-            <div fxLayout="row" fxLayoutAlign="center" fxLayoutAlign.gt-sm="end">
-              <div>
-                <button style="width: 100px" class="btn" type="button" fxLayoutAlign="center center" (click)="save()">
-                  Salvar
-                </button>
-              </div>
-              <div fxFlexOffset="1">
-                <button style="width: 100px" class="btn danger" type="button" fxLayoutAlign="center center"
-                  (click)="reset()">
-                  Cancelar
-                </button>
-              </div>
-            </div>
-
           </mat-card>
         </div>
       </div>
@@ -149,12 +186,12 @@
                 <td>{{p.email}}</td>
                 <td>{{p.phone}}</td>
                 <td style="text-align: right">
-                  <button matTooltip="Editar" matTooltipPosition="left"
-                    style="float: none" type="button" class="grid-button">
+                  <button matTooltip="Editar" matTooltipPosition="left" style="float: none" type="button"
+                    class="grid-button">
                     <mat-icon class="icon-check" (click)="edit(p)">edit</mat-icon>
                   </button>
-                  <button matTooltip="Excluir"
-                    matTooltipPosition="left" style="float: none" type="button" class="grid-button danger">
+                  <button matTooltip="Excluir" matTooltipPosition="left" style="float: none" type="button"
+                    class="grid-button danger">
                     <mat-icon (click)="delete(p.id)">delete</mat-icon>
                   </button>
                 </td>
@@ -164,8 +201,8 @@
         </table>
       </div>
     </div>
-    <!-- <mat-paginator [length]="pageable.recordCount" [pageSize]="pageable.pageSize" (page)="onPageChange($event)"
-          [pageSizeOptions]="[5, 10, 25, 100]">
-      </mat-paginator> -->
+    <mat-paginator [length]="pageable.recordCount" [pageSize]="pageable.pageSize" (page)="onPageChange($event)"
+      [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
   </mat-card>
 </div>

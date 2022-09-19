@@ -1,0 +1,8 @@
+<div fxFill class="nav-flow" fxLayoutAlign="start center" fxLayout="row">
+    <div *ngFor="let item of itemsLst; let last = last;">
+        <div fxLayoutAlign="start center">
+            <a [routerLink]=item.url> <span>{{item.title}}</span></a>
+            <mat-icon *ngIf="!last">chevron_right</mat-icon>
+        </div>
+    </div>
+</div>

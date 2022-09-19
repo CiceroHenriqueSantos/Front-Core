@@ -1,3 +1,5 @@
+import { AbstractControl } from "@angular/forms";
+
 export class StringUtil {
     public static isNullOrEmpty(value: string): boolean {
       return !value || (value?.trim().length === 0);
@@ -19,8 +21,8 @@ export class StringUtil {
       return value?.replace(/\s/g, '') || null;
     }
   
-    public static normalizeOnlyNumber(value: string | null): string | null {
-      return value?.replace(/\D+/g, '') || null;
+    public static normalizeOnlyNumber(value: string): string {
+      return value?.replace(/\D+/g, '');
     }
   
     public static normalizeCEP(value: string): string | null {
@@ -35,5 +37,15 @@ export class StringUtil {
     public static capitalizeFirstLetter(string: string) {
       return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
     }
+
+    public static normalizeEmail(control: AbstractControl): { [key: string]: boolean } | null {
+        const value: string = control.value;
+        if (!value) return null;
+    
+        const regEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+        if (regEx.test(value)) return null;
+    
+        return { notEmail: true };
+      }
   }
   

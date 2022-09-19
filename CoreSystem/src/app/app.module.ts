@@ -10,12 +10,16 @@ import { AppMaterialModule } from './shared/configs/material.module';
 import { FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
 import { DialogService } from './shared/dialog-result/dialog.service';
+import { TextMaskModule } from 'angular2-text-mask';
+import { NgBrazil } from 'ng-brazil';
+import { NavflowComponent } from './shared/components/navflow/navflow.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SnackBarComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    NavflowComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +29,8 @@ import { DialogService } from './shared/dialog-result/dialog.service';
     AppMaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    NgBrazil,
+    TextMaskModule
     
   ],
   providers: [

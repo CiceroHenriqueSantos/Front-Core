@@ -1,4 +1,12 @@
-export interface Person {
+export interface PersonPaged {
+    recordCount: number
+    currentPage: number
+    recordsPerPage: number
+    totalPages: number
+    data: Person[]
+  }
+  
+  export interface Person {
     id: number
     createDate: string
     lastUpdatedOn: string
@@ -12,4 +20,6 @@ export interface Person {
     address: string
     email: string
     phone: string
-}
+    federalId: string
+  }
+  

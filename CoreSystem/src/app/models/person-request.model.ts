@@ -9,4 +9,5 @@ export interface PersonRequest {
   address: string
   email: string
   phone: string
+  federalId: string
 }
