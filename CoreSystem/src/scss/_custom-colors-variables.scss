@@ -1,0 +1,56 @@
+$main-palette: (
+  50: #e7f5ec,
+  100: #c6e6d1,
+  200: #a2d6b4,
+  300: #7cc797,
+  400: #60bb82,
+  500: #43af6d,
+  600: #3ca062,
+  700: #338e56,
+  800: #2d7d4b,
+  900: #225d38,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  ),
+);
+$info-palette: (
+  50: #008797,
+  100: #008797,
+  200: #008797,
+  300: #008797,
+  400: #008797,
+  500: #008797,
+  600: #008797,
+  700: #008797,
+  800: #008797,
+  900: #008797,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  ),
+);
+
+$primary-color: #225d38;
+$info-color: #008797;
+$error-color: red;
+$default-btn-color: #30804e;
+
+$gray: #707070;
+$black: #000000DE;

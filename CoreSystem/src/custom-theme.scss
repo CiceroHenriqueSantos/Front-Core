@@ -1,0 +1,578 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/themes/bootstrap.css';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+@import 'scss/_custom-component';
+@import 'scss/_custom-colors-variables';
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+@mixin primary {
+  color: $primary-color;
+}
+@mixin info {
+  color: $info-color;
+}
+@mixin info-bg {
+  background: $info-color;
+  color: #fff;
+}
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$CoreSystem-primary: mat.define-palette($main-palette, 900);
+$CoreSystem-accent: mat.define-palette($main-palette, 800);
+
+// The warn palette is optional (defaults to red).
+$CoreSystem-warn: mat.define-palette(mat.$red-palette);
+$CoreSystem-info: mat.define-palette($info-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$CoreSystem-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $CoreSystem-primary,
+      accent: $CoreSystem-accent,
+      warn: $CoreSystem-warn,
+    ),
+  )
+);
+
+@import '~@angular/material/theming';
+$custom-typography: mat-typography-config(
+  $font-family: 'Intelo',
+);
+@include mat-core($custom-typography);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($CoreSystem-theme);
+
+html,
+body {
+  height: 100%;
+  font: normal normal medium 14px/24px Intelo !important;
+}
+button {
+  cursor: pointer !important;
+  padding: 0;
+  &:not(:first-of-type) {
+    margin-left: 5px;
+  }
+  &:disabled,
+  button[disabled] {
+    opacity: 0.5;
+  }
+  & .mat-icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 25px;
+    width: 33px;
+    font-size: 26px;
+  }
+  &.btn {
+    border: 0px;
+    box-shadow: 0px 2px 2px #0d7d0929;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    height: 33px;
+    background: $default-btn-color 0% 0% no-repeat padding-box;
+    padding: 2px 20px;
+  }
+  &.btn-default {
+    border: 0px;
+    box-shadow: 0px 2px 2px #0d7d0929;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    width: 35px;
+    height: 33px;
+    position: relative;
+    background: $default-btn-color 0% 0% no-repeat padding-box;
+  }
+  &.btn-danger {
+    border: 0px;
+    box-shadow: 0px 2px 2px #0d7d0929;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    width: 35px;
+    height: 33px;
+    position: relative;
+    background: rgb(176, 0, 32) 0% 0% no-repeat padding-box;
+  }
+  &.danger {
+    background: rgb(176, 0, 32) 0% 0% no-repeat padding-box;
+  }
+  &.warning {
+    background: #bfa144 0% 0% no-repeat padding-box;
+  }
+  &.sm {
+    margin-top: 0;
+    height: 22px;
+    width: 22px;
+    padding: 2px 3px;
+    & mat-icon {
+      height: 16px;
+      width: 16px;
+      font-size: 16px;
+    }
+  }
+}
+.bgpanel {
+  background: #f9f9f9 0% 0% no-repeat padding-box;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  padding: 10px;
+  padding-right: 4px;
+}
+.cgpanel {
+  background: #98A28329 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  opacity: 1;
+  padding: 10px;
+  padding-right: 4px;
+}
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.4em 0px !important;
+}
+::ng-deep .mat-form-field-label-wrapper {
+  top: -1.5em !important;
+}
+
+.card-container {
+  padding: 15px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-flex {
+  padding-top: 2px !important;
+}
+
+::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+  .mat-form-field-label {
+  transform: translateY(-1.1em) scale(0.75);
+  width: 133.33333%;
+}
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+::ng-deep .mat-form-field {
+  line-height: 16px !important;
+  padding-right: 4px;
+  // height: 58px;
+}
+::ng-deep .mat-card {
+  padding: 10px 15px !important;
+}
+::ng-deep .mat-expansion-panel-header {
+  padding: 0 0 5px !important;
+  height: 35px !important;
+  &.mat-expanded {
+    height: 35px !important;
+  }
+}
+::ng-deep .mat-radio-button {
+  padding: 0 0 5px !important;
+}
+::ng-deep .mat-expansion-panel-body {
+  padding: 0 0 5px !important;
+}
+
+div[fxLayoutAlign='start top'] {
+  & button {
+    margin-top: 5px;
+  }
+}
+::ng-deep .mat-form-field-subscript-wrapper {
+  margin-top: 20px !important;
+}
+.ecom-table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  display: table;
+  border-collapse: collapse;
+  margin: 0px;
+  white-space: nowrap;
+  border-spacing: 0;
+  & thead {
+    & tr {
+      display: table-row;
+      & th {
+        padding: 5px 10px;
+        border-bottom: 1px solid #ccc;
+        width: auto;
+        word-wrap: initial;
+        display: table-cell;
+        line-break: unset;
+        width: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        vertical-align: middle;
+      }
+      color: #000;
+      font-weight: bold;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+      font-size: 13px;
+    }
+  }
+  & tbody {
+    overflow-y: auto;
+    & tr {
+      font-size: 12px;
+      & td {
+        padding: 5px 10px;
+        word-wrap: initial;
+        display: table-cell;
+        line-break: unset;
+        width: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        vertical-align: middle;
+        text-align: left;
+        &.no-data-found {
+          font-size: 14px;
+          font-weight: bold;
+          text-align: left;
+          vertical-align: top;
+          height: 150px;
+          padding: 20px 10px;
+        }
+      }
+      &:nth-child(even) {
+        background-color: #efefef;
+      }
+      &:nth-child(odd) {
+        background-color: white;
+      }
+    }
+  }
+}
+
+::ng-deep mat-form-field .mat-form-field {
+  &-underline {
+    position: relative;
+    bottom: auto;
+  }
+  &-subscript-wrapper {
+    position: static;
+    margin-top: 0px !important;
+  }
+}
+.snackbar-error {
+  background-color: rgba(227, 0, 0, 0.2);
+  opacity: 0.1;
+  & span {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #e30000;
+  }
+}
+
+.snackbar-success {
+  background-color: rgb(193 232 192);
+  opacity: 0.1;
+  & span {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #225d38;
+  }
+}
+
+.snackbar-info {
+  background-color: $info-color;
+}
+.snackbar-warning {
+  background-color: rgb(241 228 138);
+  & span {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #997f2f;
+  }
+}
+span {
+  &.chip {
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0px 10px 2px 9px;
+    border-radius: 16px;
+    align-items: center;
+    cursor: default;
+    color: #fff;
+    margin: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    &.danger {
+      background: #e30000 0% 0% no-repeat padding-box;
+    }
+    &.default {
+      background: #30804e 0% 0% no-repeat padding-box;
+    }
+    &.warning {
+      background: #bfa144 0% 0% no-repeat padding-box;
+    }
+  }
+}
+
+button.grid-button {
+  background: transparent !important;
+  border: 0 !important;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  float: left;
+  :hover {
+    background: #d3d3d3;
+    border: none;
+    border-radius: 15px;
+    padding: 3px;
+  }
+  & mat-icon {
+    font-size: 24px;
+    height: 30px;
+    width: 30px;
+    padding: 3px;
+  }
+  &.danger {
+    & mat-icon {
+      color: #b00020 !important;
+    }
+  }
+  &.default {
+    & mat-icon {
+      color: #30804e !important;
+    }
+  }
+  &.warning {
+    & mat-icon {
+      color: #bfa144 !important;
+    }
+  }
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background: #f9f9f9;
+}
+
+.p-title-14 {
+  text-align: left;
+  font: normal normal bold 14px/24px Intelo !important;
+  letter-spacing: 0.13px !important;
+  color: #161616;
+  opacity: 1;
+  &:not(:first-child) {
+    margin-top: 20px;
+  }
+}
+
+.p-title {
+  text-align: left;
+  font: normal normal bold 16px/24px Intelo;
+  letter-spacing: 0.15px;
+  color: #161616;
+  opacity: 1;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* ======= Collor Style Start ======= */
+
+.primary-color {
+  color: $primary-color;
+}
+
+/* ======= Button Style Start ======= */
+
+.button-secondary {
+  border: 0px;
+  background: #98a283 0% 0% no-repeat padding-box;
+  box-shadow: 0px 2px 2px #0d7d0929;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+}
+
+.button-primary {
+  border: 0px;
+  background: #30804e 0% 0% no-repeat padding-box;
+  box-shadow: 0px 2px 2px #0d7d0929;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+}
+
+.button-primary:disabled {
+  background: #98a283 0% 0% no-repeat padding-box;
+}
+
+.button-secondary-outline {
+  color: #98A283;
+  border: 1px solid #98A283!important;
+  box-shadow: none !important;
+  padding-left: 12px;
+  padding-right: 12px;
+  color: #98A283 !important;
+}
+
+.button-without-border {
+  border: none;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #E30000;
+}
+
+/* ======= Icons Style ======= */
+
+.icon-check {
+  color: $primary-color;
+}
+
+/* Table */
+
+div.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  max-height: 600px;
+  border: 1px solid #ccc;
+  table.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    display: table;
+    border-collapse: collapse;
+    margin: 0px;
+    white-space: nowrap;
+    border-spacing: 0;
+    & thead {
+      & tr {
+        display: table-row;
+        & th {
+          padding: 5px 10px;
+          border-bottom: 1px solid #ccc;
+          width: auto;
+          word-wrap: initial;
+          display: table-cell;
+          line-break: unset;
+          width: auto;
+          white-space: nowrap;
+          overflow: hidden;
+          vertical-align: middle;
+        }
+        color: #000;
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+        text-align: left;
+        font-size: 13px;
+      }
+    }
+    & tbody {
+      overflow-y: auto;
+      & tr {
+        font-size: 12px;
+        &:hover {
+          background-color: #30804e !important;
+          color: #fff;
+          cursor: pointer;
+        }
+        & td {
+          padding: 5px 10px;
+          word-wrap: initial;
+          display: table-cell;
+          line-break: unset;
+          width: auto;
+          white-space: nowrap;
+          overflow: hidden;
+          vertical-align: middle;
+          &.no-data-found {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: left;
+            vertical-align: top;
+            height: 150px;
+            padding: 20px 10px;
+            background-color: #efefef !important;
+            color: #000 !important;
+            cursor: default !important;
+          }
+        }
+        &:nth-child(even) {
+          background-color: #efefef;
+        }
+        &:nth-child(odd) {
+          background-color: white;
+        }
+      }
+    }
+  }
+}
+.close:hover {
+  cursor: pointer;
+}
+div.pager {
+  border: 1px solid #ccc;
+  height: 28px;
+  & div {
+    padding: 3px 10px;
+    position: relative;
+    float: right;
+    & select {
+      outline: none;
+      border: none;
+      border-bottom: solid 1px silver;
+    }
+    & mat-icon {
+      cursor: pointer;
+      font-size: 22px;
+    }
+    &:nth-child(4) {
+      border-left: 1px solid #ccc;
+    }
+    &:nth-child(2) {
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+    }
+  }
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.checked-table {
+  background-color: #30804e !important;
+  color: #fff;
+  cursor: pointer;
+}
