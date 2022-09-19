@@ -29,6 +29,7 @@ import { MatDatepickerModule, MatDateRangePicker } from '@angular/material/datep
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
 	imports: [
@@ -49,7 +50,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 		MatSlideToggleModule,
 		MatDialogModule,
 		MatMenuModule,
-		// FlexLayoutModule,
+		FlexLayoutModule,
 		MatStepperModule,
 		MatRadioModule,
 		MatCheckboxModule,
@@ -79,7 +80,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 		MatSlideToggleModule,
 		MatDialogModule,
 		MatMenuModule,
-		// FlexLayoutModule,
+		FlexLayoutModule,
 		MatStepperModule,
 		MatRadioModule,
 		MatCheckboxModule,

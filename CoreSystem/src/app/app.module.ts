@@ -7,20 +7,30 @@ import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AppMaterialModule } from './shared/configs/material.module';
+import { FormGroupDirective, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
+import { DialogService } from './shared/dialog-result/dialog.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppMaterialModule
+    AppMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
   ],
-  providers: [],
+  providers: [
+    DialogService,
+    FormGroupDirective
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

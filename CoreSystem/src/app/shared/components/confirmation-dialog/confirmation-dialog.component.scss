@@ -1,0 +1,19 @@
+@use 'src/custom-theme' as *;
+
+
+.text {
+    color: $error-color;
+    font-size: 16px;
+}
+
+span {
+    font-size: 16px;
+    color: #000000DE;
+    font-weight: 400;
+}
+
+.button-yes {
+    border: 2px solid $error-color !important;
+    box-shadow: none !important;
+    width: 117px;
+}

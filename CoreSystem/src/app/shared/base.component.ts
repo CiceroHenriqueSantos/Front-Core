@@ -3,9 +3,19 @@ import SelectModel from "../models/select.model";
 
 export class BaseComponent {
 
+    form!: FormGroup;
+    pageable = {
+        currentPage: 1,
+        pageSize: 10,
+        recordCount: 9,
+    }
 
     displayAutoComplete(c: SelectModel) {
         return c?.description;
+    }
+
+    get formControls() {
+        return this.form.controls;
     }
 
     buildFilter(filter: any, form: FormGroup) {

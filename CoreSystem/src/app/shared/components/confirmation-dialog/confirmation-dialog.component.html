@@ -1,0 +1,18 @@
+<div fxLayout="column" fxLayoutGap.xs="16px" fxLayoutGap.md="24px" fxLayoutGap.lg="32px" fxLayoutGap.xl="50px">
+    <div fxFlex fxLayoutAlign="start center" fxLayoutGap.xs="16px" fxLayoutGap.md="32px" fxLayoutGap.lg="18px"
+        fxLayoutGap.xl="48px">
+        <strong class="text">{{data.title || "Exclusão"}}</strong>
+    </div>
+    <mat-dialog-content>
+        <span *ngIf="data.message">{{data.message}}</span>
+        <span *ngFor="let item of data.messages">* {{item}} <br /></span>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <div fxLayout="row wrap" fxLayoutAlign="start center">
+            <button mat-button (click)="close()" class="button-secondary-outline">CANCELAR</button>
+            <button mat-button (click)="confirmExclude()" class="button-without-border">{{data?.buttonConfirm ?
+                data.buttonConfirm : 'Excluir'}}</button>
+        </div>
+    </mat-dialog-actions>
+</div>
